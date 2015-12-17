@@ -5,14 +5,14 @@ import java.io.InputStreamReader;
 
 public class Hardware {
 
-	private String hardware_name = "Wii"; // ハードウェア名
-	private String hardware_maker = "Nintendo"; // 発売メーカー
-	private String software_name = "";
-	private boolean connectivity = false; // ネット接続機能の有無
-	private boolean power = false; // 電源
-	private boolean detect_soft = false; // ソフトを検出済みかどうか(ソフトが入っているか)
-	private String release_date = "2006/12/02";
-	private int price = 20000;
+	protected String hard_name; // ハードウェア名
+	protected String hard_maker; // 発売メーカー
+	private String software_name;
+	protected boolean connectivity; // ネット接続機能の有無
+	protected boolean power; // 電源
+	private boolean detect_soft; // ソフトを検出済みかどうか(ソフトが入っているか)
+	protected String release_date;
+	protected int price;
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 	void playGame() {
@@ -99,8 +99,8 @@ public class Hardware {
 
 	public void getInfo() {
 		System.out.println("*****ハードウェア情報*****");
-		System.out.println("ハードウェア名：" + this.hardware_name);
-		System.out.println("製造元：" + this.hardware_maker);
+		System.out.println("ハードウェア名：" + this.hard_name);
+		System.out.println("製造元：" + this.hard_maker);
 		if (this.connectivity == true) {
 			System.out.println("ネット接続機能：有り");
 		} else {
