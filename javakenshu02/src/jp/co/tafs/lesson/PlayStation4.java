@@ -72,24 +72,23 @@ public class PlayStation4 extends Hardware {
 			throw new Exception("電源が入っていません！\n");
 		} else {
 			if (soft_list.size() > 0) {
-				System.out.println(soft_list.get(0) + "を削除しました。\n");
-				soft_list.remove(0);
+				System.out.print("削除するソフトを選択しますか？(y/n):");
+				String select = br.readLine();
+				if (select.equals("y") || select.equals("Y")) {
+					System.out.println("ソフト番号を半角数字で入力してください。");
+					int num = Integer.valueOf(br.readLine());
+					if (soft_list.size() < num) { //要素外へのアクセス
+						System.out.println("入力された番号のソフトは存在しません。");
+					} else {
+						soft_list.remove(num - 1);
+						System.out.println("選択された番号のソフトは正常に削除されました。");
+					}
+				} else {
+					System.out.println(soft_list.get(0) + "を削除しました。\n");
+					soft_list.remove(0);
+				}
 			} else {
 				System.out.println("ソフトは挿入されていません。\n");
-			}
-		}
-	}
-
-	// 選択したソフトを削除
-	void ejectSoftware(int num) throws Exception {
-		if (getPower() == false) {
-			throw new Exception("電源が入っていません！\n");
-		} else {
-			if (soft_list.size() < num) { //要素外へのアクセス
-				System.out.println("入力された番号のソフトは存在しません。");
-			} else {
-				soft_list.remove(num - 1);
-				System.out.println("選択された番号のソフトは正常に削除されました。");
 			}
 		}
 	}
@@ -145,10 +144,14 @@ public class PlayStation4 extends Hardware {
 
 	// アクティブなゲームソフト名の取得
 	public void getActive() {
-		if (active_num != -1) {
-			System.out.println("アクティブなソフトは " + soft_list.get(active_num) + " です。\n");
+		if (soft_list.size() == 0) {
+			System.out.println("インストール済みのソフトは存在しません。");
 		} else {
-			System.out.println("アクティブなゲームソフトがありません。\n");
+			if (active_num != -1) {
+				System.out.println("アクティブなソフトは " + soft_list.get(active_num - 1) + " です。\n");
+			} else {
+				System.out.println("アクティブなゲームソフトがありません。\n");
+			}
 		}
 	}
 }

@@ -19,7 +19,7 @@ public class Player {
 			System.out
 					.println("何をしますか？半角数字で入力してください。"
 							+
-							"\n(1:電源オン, 2:電源オフ, 3:ソフトの挿入, 4:ソフト一覧の取得, 5:最も古いソフトの削除,\n6:ソフトを選択して削除, 7:アクティブなゲーム名の取得, 8:アクティブなゲームを設定, 9:ゲーム開始)");
+							"\n(1:電源オン, 2:電源オフ, 3:ソフトの挿入, 4:ソフト一覧の取得, 5:ソフトの削除, \n6:アクティブなゲーム名の取得, 7:アクティブなゲームを設定, 8:ゲーム開始)");
 			doing = inputRead(br);
 			try {
 				switch (doing) {
@@ -38,24 +38,19 @@ public class Player {
 				case "5": // 最も古いソフトの削除
 					hardware.ejectSoftware();
 					break;
-				case "6": // 選択したソフトの削除
-					System.out.println("ソフト番号を半角数字で入力してください。");
-					int num = Integer.valueOf(br.readLine());
-					hardware.ejectSoftware(num);
-					break;
-				case "7": // アクティブなゲーム名の取得
+				case "6": // アクティブなゲーム名の取得
 					hardware.getActive();
 					break;
-				case "8": // アクティブにするゲームを設定
+				case "7": // アクティブにするゲームを設定
 					System.out.println("アクティブにするソフトの番号を入力して下さい。\n");
 					hardware.getSoftwareList();
 					hardware.setActive();
 					break;
-				case "9": // ゲーム開始
+				case "8": // ゲーム開始
 					hardware.playGame();
 					break;
 				default:
-					System.out.println("1～7の半角数字で入力してください。");
+					System.out.println("1～8の半角数字で入力してください。");
 				}
 			} catch (Exception e) {
 				System.out.println(e);
